@@ -7,7 +7,7 @@ spec:
   type: Python
   mode: cluster
   image: arthrok/spark:latest
-  imagePullPolicy: Always
+  imagePullPolicy: IfNotPresent
   mainApplicationFile: "local:///opt/spark/src/myjob.py"
   sparkVersion: "3.5.0"
   restartPolicy:
