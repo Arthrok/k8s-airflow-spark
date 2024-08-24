@@ -1,7 +1,7 @@
 apiVersion: sparkoperator.k8s.io/v1beta2
 kind: SparkApplication
 metadata:
-  name: spark-app-example
+  name: spark-app-examples
   namespace: spark-operator
 spec:
   type: Python
@@ -18,7 +18,26 @@ spec:
     labels:
       version: 3.5.0
     serviceAccount: spark-operator-spark
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: spark-driver
+              operator: In
+              values:
+              - "true"
+
   executor:
     cores: 1
     instances: 1
     memory: 512m
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: spark-executor
+              operator: In
+              values:
+              - "true"
