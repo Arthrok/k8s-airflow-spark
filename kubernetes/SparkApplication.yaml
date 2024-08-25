@@ -41,3 +41,9 @@ spec:
               operator: In
               values:
               - "true"
+
+  dynamicAllocation:
+    enabled: true
+    initialExecutors: 1
+    minExecutors: 1
+    maxExecutors: 3

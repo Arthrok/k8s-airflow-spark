@@ -18,8 +18,5 @@ resultado = spark.sql("SELECT SUM(valor_custo_transferencia) AS total_custo_tran
 # Exiba o resultado
 resultado.show()
 
-time.sleep(1000000)
-
-
 # Feche a SparkSession
 spark.stop()

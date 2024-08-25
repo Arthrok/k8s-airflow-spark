@@ -19,12 +19,15 @@ services:
     volumes:
       - ../src/:/opt/spark/src/
       - ../logs/:/opt/bitnami/spark/logs/
+      - ${CONF_DIR:-../conf/}:/opt/bitnami/spark/conf/
+      - ${CONF_DEFAULT_DIR:-../conf.default/}:/opt/bitnami/spark/conf.default/
+
   spark-worker:
     image: docker.io/bitnami/spark:3.5
     environment:
       - SPARK_MODE=worker
       - SPARK_MASTER_URL=spark://spark:7077
-      - SPARK_WORKER_MEMORY=1G
+      - SPARK_WORKER_MEMORY=1m
       - SPARK_WORKER_CORES=1
       - SPARK_RPC_AUTHENTICATION_ENABLED=no
       - SPARK_RPC_ENCRYPTION_ENABLED=no
